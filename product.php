@@ -111,6 +111,21 @@ require_once "pdo.php";
 					xmlhttp.send();
 				//}
 			}
+			
+			function findTax() {
+				var selectvalue = document.getElementById("selectstate");
+				var str = selectvalue.options[selectvalue.selectedIndex].value;
+				
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("suggestTax").innerHTML = this.responseText;
+						//document.getElementById("suggestTax").value = this.responseText;
+					}
+				};
+				xmlhttp.open("Get", "suggesttax.php?q=?" + str, true);
+				xmlhttp.send();
+			}
 		</script>
 	</head>
 	
@@ -685,7 +700,7 @@ require_once "pdo.php";
 						<br>
 						<p>
 							<label>State: </label>
-							<select name="state">
+							<select name="state" id="selectstate" onchange="findTax()">
 								<option value="AL">Alabama</option>
 								<option value="AK">Alaska</option>
 								<option value="AZ">Arizona</option>
