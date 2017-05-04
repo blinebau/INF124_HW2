@@ -13,6 +13,9 @@ require_once "pdo.php";
 		<link href="https://fonts.googleapis.com/css?family=Fauna+One|Playfair+Display" rel="stylesheet">
 		<script src="https://use.fontawesome.com/18b81bd185.js"></script>
 		<script>
+			var productprice;
+			var currenttax = "0.0";
+			
 			function validateForm() {
 				var regex = /[a-zA-Z]{2,30}$/;
 				var firstName = document.forms["billingForm"]["firstName"].value;
@@ -76,7 +79,11 @@ require_once "pdo.php";
 				}
 			}
 			
-			function billingOrder() {
+			function billingOrder(name, price) {
+				productprice = price;
+				
+				document.getElementById("productname").innerHTML = name;
+				document.getElementById("price").innerHTML = price;
 				var modal = document.getElementById('billModal');
 
 				var span = document.getElementsByClassName("close")[0];
@@ -95,11 +102,11 @@ require_once "pdo.php";
 			}
 			
 			function findCity(str) {
-				//if (str.length == 0) {
-				//	document.getElementById("suggestCity").innerHTML = "";
-				//	return;
-				//}
-				//else {
+				if (str.length == 0) {
+					document.getElementById("suggestCity").value = "";
+					return;
+				}
+				else {
 					var xmlhttp = new XMLHttpRequest();
 					xmlhttp.onreadystatechange = function() {
 						if (this.readyState == 4 && this.status == 200) {
@@ -109,22 +116,42 @@ require_once "pdo.php";
 					};
 					xmlhttp.open("GET", "suggestcity.php?q=" + str, true);
 					xmlhttp.send();
-				//}
+				}
 			}
 			
-			function findTax() {
-				var selectvalue = document.getElementById("selectstate");
-				var str = selectvalue.options[selectvalue.selectedIndex].value;
+			function findTax(str) {
+				//var selectvalue = document.getElementById("selectstate");
+				//var str = selectvalue.options[selectvalue.selectedIndex].value;
+				if (str.length == 0) {
+					document.getElementById("suggestTax").innerHTML = "0.0";
+					return;
+				}
+				else {
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							document.getElementById("suggestTax").innerHTML = this.responseText;
+							currenttax = this.responseText;
+							//document.getElementById("suggestTax").value = this.responseText;
+							calcSubtotal(document.forms["billingForm"]["quantity"].value);
+						}
+					};
+					xmlhttp.open("GET", "suggesttax.php?q=" + str, true);
+					xmlhttp.send();
+				}
+			}
+			
+			function calcSubtotal(quantity) {
+				if (isNaN(parseFloat(currenttax))) {
+					currenttax = "0.0";
+				}
 				
-				var xmlhttp = new XMLHttpRequest();
-				xmlhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						document.getElementById("suggestTax").innerHTML = this.responseText;
-						//document.getElementById("suggestTax").value = this.responseText;
-					}
-				};
-				xmlhttp.open("Get", "suggesttax.php?q=?" + str, true);
-				xmlhttp.send();
+				var price = productprice;
+				var total = parseInt(quantity) * parseInt(price);
+				document.getElementById("price").innerHTML = total;
+				
+				var gtotal = total + (total * parseFloat(currenttax).toFixed(5));
+				document.getElementById("gtotal").innerHTML = gtotal;
 			}
 		</script>
 	</head>
@@ -136,8 +163,8 @@ require_once "pdo.php";
 				<ul id="nav-links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="product.php">Products</a></li>
-					<li><a href="company.html">Company</a></li>
-					<li><a href="about.html">About Us</a></li>
+					<li><a href="company.php">Company</a></li>
+					<li><a href="about.php">About Us</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -179,7 +206,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Printed T-Shirt" value="750" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage').src='images/shirt1-1.jpg'" src="images/shirt1-1.jpg">
@@ -221,7 +248,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Stressed Denim Shirt" value="900" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='images/shirt2-1.jpg'" src="images/shirt2-1.jpg">
@@ -263,7 +290,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Plaid Shirt" value="850" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='images/shirt3-1.jpg'" src="images/shirt3-1.jpg">
@@ -305,7 +332,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Hooded Pullover" value="1200" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='images/shirt4-1.jpg'" src="images/shirt4-1.jpg">
@@ -347,7 +374,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Stressed Denim Jacket" value="800" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='images/shirt5-1.jpg'" src="images/shirt5-1.jpg">
@@ -388,7 +415,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Designer T-Shirt" value="750" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='images/shirt6-1.jpg'" src="images/shirt6-1.jpg">
@@ -430,7 +457,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Chinos" value="1100" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='images/pant1-1.jpg'" src="images/pant1-1.jpg">
@@ -472,7 +499,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Stressed Denim Pants" value="1300" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='images/pant2-1.jpg'" src="images/pant2-1.jpg">
@@ -514,7 +541,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Skinny Jean Pants" value="1200" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='images/pant3-1.jpg'" src="images/pant3-1.jpg">
@@ -556,7 +583,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Designer Denim Pants" value="1300" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='images/pant4-1.jpg'" src="images/pant4-1.jpg">
@@ -598,7 +625,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Denim Cutoff Pants" value="1000" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='images/pant5-1.jpg'" src="images/pant5-1.jpg">
@@ -640,7 +667,7 @@ require_once "pdo.php";
 							<b>Washing Instructions</b>: Machine Wash
 						</p>
 					</div>
-						<button onclick="billingOrder()">Order</button>
+					<button name="Skinny Trouser Pants" value="1150" onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
 							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='images/pant6-1.jpg'" src="images/pant6-1.jpg">
@@ -676,31 +703,25 @@ require_once "pdo.php";
 					Order Form
 				</p>
 				<br>
+				<p>
+					<span id="productname"></span>
+				</p>
 				<div class="form-content">
 					<form name="billingForm" action="process_form.php" onsubmit="return validateForm(this)" method="post">
+						<br>
 						<p>
-							<label>First Name:</label> <input type="text" name="firstName">
+							<label>First Name:</label> <input type="text" name="firstName"> <label>Last Name:</label> <input type="text" name="lastName">
 						</p>
 						<br>
 						<p>
-							<label>Last Name:</label> <input type="text" name="lastName">
-						</p>
-						<br>
-						<p>
-							<label>Address:</label> <input type="text" name="address">
-						</p>
-						<br>
-						<p>
-							<label>Zip Code:</label> <input type="text" name="zip" onkeyup="findCity(this.value)">
+							<label>Address:</label> <input type="text" name="address"> <label>Zip Code:</label> <input type="text" name="zip" onkeyup="findCity(this.value); findTax(this.value);">
 						</p>
 						<br>
 						<p>
 							<label>City:</label> <input type="text" name="city" id="suggestCity">
-						</p>
-						<br>
-						<p>
+
 							<label>State: </label>
-							<select name="state" id="selectstate" onchange="findTax()">
+							<select name="state" id="selectstate">
 								<option value="AL">Alabama</option>
 								<option value="AK">Alaska</option>
 								<option value="AZ">Arizona</option>
@@ -756,23 +777,13 @@ require_once "pdo.php";
 						</p>
 						<br>
 						<p>
-							<label>Phone Number:</label> <input type="text" name="phone">
+							<label>Phone Number:</label> <input type="text" name="phone"> <label>Email:</label> <input type="text" name="email">
 						</p>
 						<br>
 						<p>
-							<label>Email:</label> <input type="text" name="email">
-						</p>
-						<br>
-						<p>
-							<label>Credit Card:</label> <input type="text" name="card">
-						</p>
-						<br>
-						<p>
-							<label>Quantity:</label> <input type="text" name="quantity">
-						</p>
-						<br>
-						<p>
-							<label>Shipping Method:</label> 
+							<label>Quantity:</label> <input type="text" name="quantity" value="1" onblur="calcSubtotal(this.value)">
+						
+							<label>&emsp;Shipping Method:</label> 
 							<select name="shipping">
 								<option value="2 Day">2 Day</option>
 								<option value="Overnight">Overnight</option>
@@ -780,10 +791,27 @@ require_once "pdo.php";
 							</select>
 						</p>
 						<br>
+						<p>
+							<label>Credit Card:</label> <input type="text" name="card">
+						</p>
 						<br>
-						<div class="formButton">
-							<input type="submit" value="Submit">
-						</div>
+						<br>
+						<p>
+							<label></label><label style="text-align: right">Subtotal:</label> <span>$</span><span id="price"></span>
+						</p>
+						<p>
+							<label></label><label style="text-align: right">Tax:</label> <span>%</span><span id="suggestTax">0</span>
+						</p>
+						<p>
+							<label></label><label style="text-align: right">Grand Total:</label> <span>$</span><span id="gtotal"></span>
+						</p>
+						<br>
+						<p>
+						<label></label>
+							<div style="display: table-cell" class="formButton">
+								<input type="submit" value="Submit">
+							</div>
+						</p>
 					</form>
 				</div>
 			</div>

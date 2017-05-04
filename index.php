@@ -20,8 +20,8 @@ require_once "pdo.php";
 				<ul id="nav-links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="product.php">Products</a></li>
-					<li><a href="company.html">Company</a></li>
-					<li><a href="about.html">About Us</a></li>
+					<li><a href="company.php">Company</a></li>
+					<li><a href="about.php">About Us</a></li>
 				</ul>
 			</nav>
 		</header>

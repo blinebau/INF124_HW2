@@ -3,7 +3,7 @@
 //Students: Mike Duong 69881873 & Bryan Linebaugh 49831189
 require_once "pdo.php";
 
-//$city = "asdf";
+$city = "";
 
 try {
 	//$stmt = $pdo->prepare("SELECT * FROM zipcode WHERE zip=:zip");
