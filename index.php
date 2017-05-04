@@ -5,6 +5,8 @@
 require_once "pdo.php";
 
 ?>
+
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -15,15 +17,7 @@ require_once "pdo.php";
 	
 	<body>
 		<header>
-			<h1>Weaves & Crafts</h1>
-			<nav id="nav-bar">
-				<ul id="nav-links">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="product.php">Products</a></li>
-					<li><a href="company.php">Company</a></li>
-					<li><a href="about.php">About Us</a></li>
-				</ul>
-			</nav>
+			<?php include 'header.php'; ?>
 		</header>
 		<main>
 			<div class="wrap">
@@ -185,13 +179,7 @@ require_once "pdo.php";
 			</div>
 		</main>
 		<footer>
-			<div id="copyright">© 2017 Weaves & Crafts, INC. Some rights reserved.</div>
-			<div id="social-info">
-				Connect with us: 
-				<i class="fa fa-facebook-square" aria-hidden="true"></i>
-				<i class="fa fa-twitter-square" aria-hidden="true"></i>
-				<i class="fa fa-instagram" aria-hidden="true"></i>
-			</div>
+			<?php include 'footer.php'; ?>
 		</footer>
 	</body>
 </html>
