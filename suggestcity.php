@@ -6,18 +6,15 @@ require_once "pdo.php";
 $city = "";
 
 try {
-	//$stmt = $pdo->prepare("SELECT * FROM zipcode WHERE zip=:zip");
-	//$stmt->bindParam(':zip', $zip);	
-	//$zip = $_REQUEST["q"];
-	//$stmt->execute();
-	//$city = $stmt;
+	$stmt = $pdo->prepare("SELECT city FROM zipcode WHERE zip=:zip");
+	$stmt->bindParam(':zip', $zip);	
 	$zip = $_REQUEST["q"];
-	//echo "post request:$zip";
-	$sql = "SELECT city FROM zipcode WHERE zip=$zip";
-	//echo "sql query:$sql";
-	$stmt = $pdo->query($sql);
+	$stmt->execute();
 	
-	//$city = $stmt;
+	//$zip = $_REQUEST["q"];
+	//$sql = "SELECT city FROM zipcode WHERE zip=$zip";
+	//$stmt = $pdo->query($sql);
+	
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	//echo ($row['city']);
 	$city = $row['city'];

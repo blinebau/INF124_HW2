@@ -3,21 +3,18 @@
 //Students: Mike Duong 69881873 & Bryan Linebaugh 49831189
 require_once "pdo.php";
 
-//$city = "asdf";
+$tax = "0.0";
 
 try {
-	//$stmt = $pdo->prepare("SELECT * FROM zipcode WHERE zip=:zip");
-	//$stmt->bindParam(':zip', $zip);	
-	//$zip = $_REQUEST["q"];
-	//$stmt->execute();
-	//$city = $stmt;
+	$stmt = $pdo->prepare("SELECT combinedrate FROM taxrate WHERE zipcode=:zip");
+	$stmt->bindParam(':zip', $zip);	
 	$zip = $_REQUEST["q"];
-	//echo "post request:$zip";
-	$sql = "SELECT combinedrate FROM taxrate WHERE zipcode=$zip";
-	//echo "sql query:$sql";
-	$stmt = $pdo->query($sql);
+	$stmt->execute();
+
+	//$zip = $_REQUEST["q"];
+	//$sql = "SELECT combinedrate FROM taxrate WHERE zipcode=$zip";
+	//$stmt = $pdo->query($sql);
 	
-	//$city = $stmt;
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	//echo ($row['city']);
 	$tax = $row['combinedrate'];
@@ -25,7 +22,7 @@ try {
 	//echo "post query:$city";
 	
 	// Output "" if no hint was found or output correct values 
-	echo $tax === "" ? "" : $tax;
+	echo $tax === "" ? "0.0" : $tax;
 	//echo "End of php";
 	}
 catch(PDOException $e)

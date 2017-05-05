@@ -4,6 +4,18 @@
 //Students: Mike Duong 69881873 & Bryan Linebaugh 49831189
 require_once "pdo.php";
 
+try {
+	$stmt = $pdo->prepare("SELECT name, pdesc, price, pid, size, comp, wash_instr, img1, img2, img3, img4 FROM PRODUCT");
+	$stmt->execute();
+	
+	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+catch(PDOException $e)
+	{
+		echo $sql . "<br>" . $e->getMessage();
+	} 
+	
+$pdo = null;
 ?>
 
 <!DOCTYPE HTML>
@@ -35,503 +47,492 @@ require_once "pdo.php";
 				</div>
 				<div id="product1" class="detail-box">
 					<h3>
-						Printed T-Shirt
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage" class ="item-pic" src="images/shirt1-1.jpg">
+						<img id="bigImage1" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Red cotton blend using a special combination of polyester and wool. Printed text on the front that is inspired by randomly
-							throwing words together.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $750
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: a1234
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Printed T-Shirt" value="750" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage').src='images/shirt1-1.jpg'" src="images/shirt1-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage1').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage').src='images/shirt1-2.jpg'" src="images/shirt1-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage1').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage').src='images/shirt1-3.jpg'" src="images/shirt1-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage1').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage').src='images/shirt1-4.jpg'" src="images/shirt1-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage1').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img1']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product2" class="detail-box">
 					<h3>
-						Stressed Denim Shirt
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage2" class ="item-pic" src="images/shirt2-1.jpg">
+						<img id="bigImage2" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Blue cotton heavy threaded shirt with various distressed features. Other features include one pocket, torn cuffs, and
-							a missing shoulder piece.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $900
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: b5678
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Stressed Denim Shirt" value="900" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='images/shirt2-1.jpg'" src="images/shirt2-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='images/shirt2-2.jpg'" src="images/shirt2-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='images/shirt2-3.jpg'" src="images/shirt2-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='images/shirt2-4.jpg'" src="images/shirt2-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage2').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product3" class="detail-box">
 					<h3>
-						Plaid Shirt
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage3" class ="item-pic" src="images/shirt3-1.jpg">
+						<img id="bigImage3" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Hip-hop inspired plaid shirt made from 100% cotton blend. Buttons are made of ivory and fabrics are sewn together using
-							special double thread technique.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $850
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: c9012
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Plaid Shirt" value="850" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='images/shirt3-1.jpg'" src="images/shirt3-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='images/shirt3-2.jpg'" src="images/shirt3-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='images/shirt3-3.jpg'" src="images/shirt3-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='images/shirt3-4.jpg'" src="images/shirt3-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage3').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product4" class="detail-box">
 					<h3>
-						Hooded Pullover
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage4" class ="item-pic" src="images/shirt4-1.jpg">
+						<img id="bigImage4" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Black cotton heavy fabric pullover sweater, which features a large hood with industrial grade ring tassels, blue stripe
-							sleeve designs, and one pocket.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1200
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: d3456
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Hooded Pullover" value="1200" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='images/shirt4-1.jpg'" src="images/shirt4-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='images/shirt4-2.jpg'" src="images/shirt4-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='images/shirt4-3.jpg'" src="images/shirt4-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='images/shirt4-4.jpg'" src="images/shirt4-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage4').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product5" class="detail-box">
 					<h3>
-						Stressed Denim Jacket
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage5" class ="item-pic" src="images/shirt5-1.jpg">
+						<img id="bigImage5" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Dark denim distressed jacket made from various denim sewn together. Features industrial grade buttons and torn at the
-							shoulders to reveal inner cotton fabrics.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $800
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: e7890
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Stressed Denim Jacket" value="800" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='images/shirt5-1.jpg'" src="images/shirt5-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='images/shirt5-2.jpg'" src="images/shirt5-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='images/shirt5-3.jpg'" src="images/shirt5-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='images/shirt5-4.jpg'" src="images/shirt5-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage5').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product6" class="detail-box">
 					<h3>
-						Designer T-Shirt
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage6" class ="item-pic" src="images/shirt6-1.jpg">
+						<img id="bigImage6" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							White cotton designer T-Shirt made from artisanal fabricaters. 100% organic with a unique blend of polyester and wool.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $750
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: f1234
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Designer T-Shirt" value="750" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='images/shirt6-1.jpg'" src="images/shirt6-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='images/shirt6-2.jpg'" src="images/shirt6-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='images/shirt6-3.jpg'" src="images/shirt6-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='images/shirt6-4.jpg'" src="images/shirt6-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage6').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product7" class="detail-box">
 					<h3>
-						Chinos
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage7" class ="item-pic" src="images/pant1-1.jpg">
+						<img id="bigImage7" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							White cotton blend slim fit chinos featuring a low waist, waistband with belt loops, two side pockets, and hem at the
-							bottom.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1100
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: g5678
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Chinos" value="1100" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='images/pant1-1.jpg'" src="images/pant1-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='images/pant1-2.jpg'" src="images/pant1-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='images/pant1-3.jpg'" src="images/pant1-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='images/pant1-4.jpg'" src="images/pant1-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage7').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product8" class="detail-box">
 					<h3>
-						Stressed Denim Pants
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage8" class ="item-pic" src="images/pant2-1.jpg">
+						<img id="bigImage8" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Blue cotton distressed slim-fit jeans featuring stretchable fabrics, screen prints on the knees, a waistband with belt
-							loops, a button & zipper combo, and rolled cutoffs.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1300
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: h7890
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Stressed Denim Pants" value="1300" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='images/pant2-1.jpg'" src="images/pant2-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='images/pant2-2.jpg'" src="images/pant2-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='images/pant2-3.jpg'" src="images/pant2-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='images/pant2-4.jpg'" src="images/pant2-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage8').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product9" class="detail-box">
 					<h3>
-						Skinny Jean Pants
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage9" class ="item-pic" src="images/pant3-1.jpg">
+						<img id="bigImage9" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Black cotton denim skinny leg jeans featuring stretchable fabrics, a waistband with belt loops, a button & zipper combo,
-							a four pocket design, and rolled cutoffs.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1200
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: h1234
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Skinny Jean Pants" value="1200" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='images/pant3-1.jpg'" src="images/pant3-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='images/pant3-2.jpg'" src="images/pant3-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='images/pant3-3.jpg'" src="images/pant3-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='images/pant3-4.jpg'" src="images/pant3-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage9').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product10" class="detail-box">
 					<h3>
-						Designer Denim Pants
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage10" class ="item-pic" src="images/pant4-1.jpg">
+						<img id="bigImage10" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Blue cotton denim skinny leg jeans featuring stretchable fabrics, distressed design at the knees, yellow fabrics
-							underneath, and rolled cutoffs.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1300
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: i2345
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Designer Denim Pants" value="1300" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='images/pant4-1.jpg'" src="images/pant4-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='images/pant4-2.jpg'" src="images/pant4-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='images/pant4-3.jpg'" src="images/pant4-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='images/pant4-4.jpg'" src="images/pant4-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage10').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product11" class="detail-box">
 					<h3>
-						Denim Cutoff Pants
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage11" class ="item-pic" src="images/pant5-1.jpg">
+						<img id="bigImage11" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Blue cotton denim straight leg jeans featuring stretchable fabrics, yellow design pattern sewn down the side of the pants,
-							a waistband with belt loops, and ripped cutoffs.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1000
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: j4567
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Denim Cutoff Pants" value="1000" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='images/pant5-1.jpg'" src="images/pant5-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='images/pant5-2.jpg'" src="images/pant5-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='images/pant5-3.jpg'" src="images/pant5-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='images/pant5-4.jpg'" src="images/pant5-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage11').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img1']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div id="product12" class="detail-box">
 					<h3>
-						Skinny Trouser Pants
+						<?php echo ($row['name']) ?>
 					</h3>
 					<div class="big-pic-container">
-						<img id="bigImage12" class ="item-pic" src="images/pant6-1.jpg">
+						<img id="bigImage12" class ="item-pic" src=<?php echo ($row['img1']) ?>>
 					</div>
 					<div class="item-description">
 						<p>
-							Grey cotton straight leg pants. Made with a unique polyester and wool blend, which offers a comfortable and durable relax
-							look. High ankle cutoff design.
+							<?php echo ($row['pdesc']) ?>
 							<br>
 							<br>
-							<b>Price</b>: $1150
+							<b>Price</b>: $<?php echo ($row['price']) ?>
 							<br>
 							<br>
-							<b>Product ID</b>: k5678
+							<b>Product ID</b>: <?php echo ($row['pid']) ?>
 							<br>
-							<b>Size</b>: One size fits all
+							<b>Size</b>: <?php echo ($row['size']) ?>
 							<br>
-							<b>Composition</b>: Cotton 100%
+							<b>Composition</b>: <?php echo ($row['comp']) ?>
 							<br>
-							<b>Washing Instructions</b>: Machine Wash
+							<b>Washing Instructions</b>: <?php echo ($row['wash_instr']) ?>
 						</p>
 					</div>
-					<button name="Skinny Trouser Pants" value="1150" onclick="billingOrder(this.name, this.value)">Order</button>
+					<button name="<?php echo ($row['name']) ?>" value=<?php echo ($row['price']) ?> onclick="billingOrder(this.name, this.value)">Order</button>
 					<div class="preview-row">
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='images/pant6-1.jpg'" src="images/pant6-1.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='<?php echo ($row['img1']) ?>'" src=<?php echo ($row['img1']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='images/pant6-2.jpg'" src="images/pant6-2.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='<?php echo ($row['img2']) ?>'" src=<?php echo ($row['img2']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='images/pant6-3.jpg'" src="images/pant6-3.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='<?php echo ($row['img3']) ?>'" src=<?php echo ($row['img3']) ?>>
 						</div>
 						<div class="preview-box">
-							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='images/pant6-4.jpg'" src="images/pant6-4.jpg">
+							<img class="small-pic" onmouseover="document.getElementById('bigImage12').src='<?php echo ($row['img4']) ?>'" src=<?php echo ($row['img4']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>>
 						</div>
 					</div>
 				</div>

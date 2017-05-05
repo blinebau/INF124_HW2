@@ -4,6 +4,18 @@
 //Students: Mike Duong 69881873 & Bryan Linebaugh 49831189
 require_once "pdo.php";
 
+try {
+	$stmt = $pdo->prepare("SELECT name, price, img1 FROM PRODUCT");
+	$stmt->execute();
+	
+	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+catch(PDOException $e)
+	{
+		echo $sql . "<br>" . $e->getMessage();
+	} 
+	
+$pdo = null;
 ?>
 
 <!DOCTYPE HTML>
@@ -39,139 +51,140 @@ require_once "pdo.php";
 				<div class="item-box">
 					<div class="item-row1">
 						<div class="item-individual">
-							<h4>Printed T-Shirt</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product1">
-									<img class ="item-pic" src="images/shirt1-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $750
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
+								
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Stressed Denim Shirt</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product2">
-									<img class ="item-pic" src="images/shirt2-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $900
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Plaid Shirt</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product3">
-									<img class ="item-pic" src="images/shirt3-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $850
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Hooded Pullover</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product4">
-									<img class ="item-pic" src="images/shirt4-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1200
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 					</div>
 					<div class="item-row2">
 						<div class="item-individual">
-							<h4>Stressed Denim Jacket</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product5">
-									<img class ="item-pic" src="images/shirt5-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $800
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Designer T-Shirt</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product6">
-									<img class ="item-pic" src="images/shirt6-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $750
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Chinos</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product7">
-									<img class ="item-pic" src="images/pant1-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1100
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Stressed Denim Pants</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product8">
-									<img class ="item-pic" src="images/pant2-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1300
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 					</div>
 					<div class="item-row3">
 						<div class="item-individual">
-							<h4>Skinny Jean Pants</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product9">
-									<img class ="item-pic" src="images/pant3-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1200
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Designer Denim Pants</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product10">
-									<img class ="item-pic" src="images/pant4-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1300
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Denim Cutoff Pants</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product11">
-									<img class ="item-pic" src="images/pant5-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1000
+								Price: $<?php echo ($row['price']); $row = $stmt->fetch(PDO::FETCH_ASSOC); ?>
 							</p>
 						</div>
 						<div class="item-individual">
-							<h4>Skinny Trouser Pants</h4>
+							<h4><?php echo ($row['name']) ?></h4>
 							<div class="item-image-container">
 								<a href="product.php#product12">
-									<img class ="item-pic" src="images/pant6-1.jpg">
+									<img class ="item-pic" src=<?php echo ($row['img1']) ?>>
 								</a>
 							</div>
 							<p>
-								Price: $1150
+								Price: $<?php echo ($row['price']) ?>
 							</p>
 						</div>
 					</div>
