@@ -1,4 +1,5 @@
-
+//UCI Informatics 124/Cs 137 - Assignment 2 Spring 2017
+//Students: Mike Duong 69881873 & Bryan Linebaugh 49831189
 var productprice;
 var currenttax = "0.0";
 
@@ -97,7 +98,6 @@ function findCity(str) {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				//document.getElementById("suggestCity").innerHTML = this.responseText;
 				document.getElementById("suggestCity").value = this.responseText;
 			}
 		};
@@ -107,8 +107,6 @@ function findCity(str) {
 }
 
 function findTax(str) {
-	//var selectvalue = document.getElementById("selectstate");
-	//var str = selectvalue.options[selectvalue.selectedIndex].value;
 	if (str.length == 0) {
 		document.getElementById("suggestTax").innerHTML = "0.0";
 		return;
@@ -119,7 +117,6 @@ function findTax(str) {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("suggestTax").innerHTML = this.responseText;
 				currenttax = this.responseText;
-				//document.getElementById("suggestTax").value = this.responseText;
 				calcSubtotal(document.forms["billingForm"]["quantity"].value);
 			}
 		};

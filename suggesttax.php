@@ -16,14 +16,10 @@ try {
 	//$stmt = $pdo->query($sql);
 	
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
-	//echo ($row['city']);
 	$tax = $row['combinedrate'];
-	//echo "city:$city";
-	//echo "post query:$city";
 	
 	// Output "" if no hint was found or output correct values 
 	echo $tax === "" ? "0.0" : $tax;
-	//echo "End of php";
 	}
 catch(PDOException $e)
 	{
