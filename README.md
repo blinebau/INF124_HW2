@@ -20,7 +20,7 @@ Login:
 
 Start server : /usr/sbin/httpd -f /home/inf124grp12/apache/conf/httpd.conf
 
-Stop Server : /usr/sbin/httpd --f /home/inf124grp12/apache/conf/httpd.conf --k stop
+Stop Server : /usr/sbin/httpd -f /home/inf124grp12/apache/conf/httpd.conf -k stop
 
 Refer to Info124HW1 high level description of website layout
 
